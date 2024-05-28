@@ -1,1 +1,1 @@
-# SO-SLAM
+# SOL-SLAM

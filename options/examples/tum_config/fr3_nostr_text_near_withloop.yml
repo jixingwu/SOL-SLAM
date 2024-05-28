@@ -1,0 +1,53 @@
+# This configuration corresponds to Ours (Mono-SC Train.) in the extended paper.
+# NOTE: the predicted trajectory is not in the real-world scale.
+
+#-------------------------------------
+#- Basic setup
+#-------------------------------------
+
+dataset: tum-2                                            # dataset [kitti_odom, kitti_raw, tum-1/2/3, adelaide1/2]
+seed: 4869                                                # random seed
+image:
+    height: 480                                           # image height
+    width: 640                                            # image width
+    ext: png                                              # image file extension for data loading
+seq: "rgbd_dataset_freiburg3_nostructure_texture_near_withloop"                        # sequence to run
+frame_step: 1                                             # frame step
+
+#-------------------------------------
+#- Directories
+#-------------------------------------
+directory:
+    result_dir: result/tmp/0/                             # directory to save result
+    img_seq_dir: dataset/tum/rgbd_slam/            # image data directory
+    gt_pose_dir:                                          # (optional) ground-truth pose data directory
+    depth_dir:                                            # (optional) external depth data, e.g. ground-truth depths
+
+#-------------------------------------
+#- Depth
+#-------------------------------------
+depth:                                                    # Depth configuration
+    depth_src:                                            # depth source [None, gt]
+    deep_depth:
+        network: sc_depthv3
+        parameter_file: options/configs/v1/kitti_odom.txt
+        pretrained_model: model_zoo/depth/sc_depthv3/ddad_scv3/epoch=99-val_loss=0.1438.ckpt
+    max_depth: 50                                        # maximum depth
+    min_depth: 0                                          # minimum depth
+
+# ------------------------------------
+# Online Finetuning
+# ------------------------------------
+online_finetune:                                          # online fine-tuning configuration
+    enable: False                                          # enable/disable flow finetuning
+
+
+#-------------------------------------
+#- Visualization
+#-------------------------------------
+visualization:                                            # visualization configuration
+    trajectory:                                           # trajectory visualization configuration
+        vis_traj: True                                    # enable/disable predicted trajectory visualization
+        vis_gt_traj: False                                # enable/disable ground truth trajectory visualization
+        mono_scale: 1                                     # monocular prediction scaling factor
+        vis_scale: 10
