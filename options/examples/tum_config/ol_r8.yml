@@ -35,14 +35,17 @@ depth:                                                    # Depth configuration
         parameter_file: options/configs/v1/tum2.txt
         pretrained_model: model_zoo/depth/sc_depthv3/ddad_scv3/epoch=99-val_loss=0.1438.ckpt
 
+deep_flow:                                                # Deep optical flow configuration
+    enable: False                                         # True -> DF-VO, False -> ORB-SLAM3
+
 # ------------------------------------
 # Online Learning
 # ------------------------------------
 online_learning:                                          # online learning configuration
     enable: True                                          # enable/disable
     val_enable: True                                      # enable/disable validation
-    mode: refiner                                        # finetune, refiner or bn
-    lora_r:  8                                             # lora r in encoder
+    mode: finetune                                              # finetune, refiner or bn
+    lora_r:  8                                            # lora r in encoder
     lora_r2: 8                                            # lora r in decoder
     batch_size: 4                                         # batch size
     max_size: 3                                           # maximum number of keyframe list

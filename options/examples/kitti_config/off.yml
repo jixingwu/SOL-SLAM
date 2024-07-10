@@ -15,9 +15,11 @@ image:
 #- Directories
 #-------------------------------------
 directory:
-    result_dir: result/tmp/0/                             # directory to save result
-    img_seq_dir: dataset/kitti_odom/odom_data/            # image data directory
+    result_dir: result/tmp/3/                             # directory to save result
     flow_dir: dataset/kitti_odom/flow_data/               # (optional) external flow data directory
+    pose_dir: dataset/kitti_odom/pose_data/               # (optional) external pose data directory
+    sparse_depth_dir: dataset/kitti_odom/sparse_depth/    # (optional) external sparse depth data directory
+    img_seq_dir: dataset/kitti_odom/odom_data/            # image data directory
     gt_pose_dir:                                          # (optional) ground-truth pose data directory
     depth_dir:                                            # (optional) external depth data, e.g. ground-truth depths
 
@@ -29,11 +31,18 @@ depth:                                                    # Depth configuration
     deep_depth:
         network: sc_depthv3
         parameter_file: options/configs/v1/kitti_odom.txt
-        pretrained_model: model_zoo/depth/sc_depthv3/ddad_scv3/epoch=99-val_loss=0.1438.ckpt
+        pretrained_model: model_zoo/depth/sc_depthv3/kitti_scv1/epoch=99-val_loss=0.1411.ckpt
 
+# ------------------------------------
+# Online Learning
+# ------------------------------------
 online_learning:                                          # online learning configuration
     enable: False                                          # enable/disable
     val_enable: False                                      # enable/disable validation
+    mode: finetune                                        # finetune, refiner or bn
+    lora_r: 4                                             # lora r in encoder
+    lora_r2: 4                                            # lora r in decoder
+    val_enable: True                                      # enable/disable validation
     batch_size: 2                                         # batch size
     max_size: 3                                           # maximum number of keyframe list
     val_step: 10                                          # validation step
@@ -46,5 +55,5 @@ visualization:                                            # visualization config
     trajectory:                                           # trajectory visualization configuration
         vis_traj: True                                    # enable/disable predicted trajectory visualization
         vis_gt_traj: False                                # enable/disable ground truth trajectory visualization
-        mono_scale: 1                                     # monocular prediction scaling factor
+        mono_scale: 1                                    # monocular prediction scaling factor
         vis_scale: 1
