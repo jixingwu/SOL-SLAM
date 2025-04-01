@@ -1,6 +1,6 @@
 # SOL-SLAM
 
-Submission for RA-L, "SOL-SLAM: Self-Reinforcing Online Learning for Fast Adaptation of Visual SLAM".
+Submission for TIM, "SOL-SLAM: Self-Supervised Online Learning for Fast Adaptation of Visual SLAM".
 
 ## Install Dependency Packages
 
