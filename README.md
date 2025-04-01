@@ -1,6 +1,7 @@
 # SOL-SLAM
 
-Submission for TIM, "SOL-SLAM: Self-Supervised Online Learning for Fast Adaptation of Visual SLAM".
+Submission for TIM, "An Online Adaptation Method for Robust Depth Estimation and
+Visual Odometry in the Open World".
 
 ## Install Dependency Packages
 
